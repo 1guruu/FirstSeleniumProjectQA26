@@ -9,5 +9,8 @@ public class RegisterTest {
         driver.manage().window().maximize();
         driver.get("http://testfasttrackit.info/selenium-test/");
 
+
+
+
     }
 }
