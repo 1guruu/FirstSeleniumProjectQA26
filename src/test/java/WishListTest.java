@@ -7,10 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class WishListTest2 {
+public class WishListTest {
 
-
-    public class WishListTest {
         private WebDriver driver;
 
         @Before
@@ -25,7 +23,7 @@ public class WishListTest2 {
 
         @Test
 
-        public void AddToWishList()  {
+        public void AddToWishListLoggenIn()  {
             driver.findElement(By.cssSelector(".skip-account .label")).click();
             driver.findElement(By.cssSelector("a[title='Log In']")).click();
             driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
@@ -39,6 +37,37 @@ public class WishListTest2 {
 
 
         }
+        @Test
+
+        public void AddToWishListNotLoggedIn()  {
+            driver.findElement(By.cssSelector(".nav-5 .has-children")).click();
+            driver.findElement(By.cssSelector(".actions [title='View Details']")).click();
+            driver.findElement(By.cssSelector("a.link-wishlist")).click();
+            WebElement wishlistTextElement = driver.findElement(By.cssSelector(".success-msg span"));
+            Assert.assertTrue(wishlistTextElement.isDisplayed());
+        }
+
+
+
+
+
+        @Test
+        public void GoToCheckoutLoggedIn(){
+            driver.findElement(By.cssSelector(".skip-account .label")).click();
+            driver.findElement(By.cssSelector("a[title='Log In']")).click();
+            driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
+            driver.findElement(By.id("pass")).sendKeys("123456");
+            driver.findElement(By.id("send2")).click();
+            driver.findElement(By.cssSelector(".skip-cart .label")).click();
+            driver.findElement(By.cssSelector(".checkout-button")).click();
+            WebElement checkoutTextElement = driver.findElement(By.cssSelector(".page-title h1"));
+            String textFromElement = driver.findElement(By.cssSelector(".page-title h1")).getText();
+            Assert.assertTrue(checkoutTextElement.isDisplayed());
+            Assert.assertEquals("CHECKOUT", textFromElement);
+        }
+
+
+
 
         @After
         public void close(){
@@ -48,4 +77,4 @@ public class WishListTest2 {
 
     }
 
-}
+
