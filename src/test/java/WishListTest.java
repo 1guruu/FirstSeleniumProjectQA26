@@ -20,15 +20,18 @@ public class WishListTest {
 
         }
 
-
-        @Test
-
-        public void AddToWishListLoggenIn()  {
+        private void logIn(){
             driver.findElement(By.cssSelector(".skip-account .label")).click();
             driver.findElement(By.cssSelector("a[title='Log In']")).click();
             driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
             driver.findElement(By.id("pass")).sendKeys("123456");
             driver.findElement(By.id("send2")).click();
+        }
+
+        @Test
+
+        public void AddToWishListLoggenIn()  {
+            logIn();
             driver.findElement(By.cssSelector(".nav-5 .has-children")).click();
             driver.findElement(By.cssSelector(".actions [title='View Details']")).click();
             driver.findElement(By.cssSelector("a.link-wishlist")).click();
@@ -53,11 +56,7 @@ public class WishListTest {
 
         @Test
         public void GoToCheckoutLoggedIn(){
-            driver.findElement(By.cssSelector(".skip-account .label")).click();
-            driver.findElement(By.cssSelector("a[title='Log In']")).click();
-            driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
-            driver.findElement(By.id("pass")).sendKeys("123456");
-            driver.findElement(By.id("send2")).click();
+            logIn();
             driver.findElement(By.cssSelector(".skip-cart .label")).click();
             driver.findElement(By.cssSelector(".checkout-button")).click();
             WebElement checkoutTextElement = driver.findElement(By.cssSelector(".page-title h1"));

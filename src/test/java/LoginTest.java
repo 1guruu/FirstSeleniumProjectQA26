@@ -19,15 +19,39 @@ public class LoginTest {
     }
 
 
+//        driver.switchTo().alert().accept();
 
 
 
+    @Test
+    public void loginWithBlankEmailTest(){
+        driver.findElement(By.cssSelector(".skip-account .label")).click();
+        driver.findElement(By.cssSelector("a[title='Log In']")).click();
+        driver.findElement(By.id("pass")).sendKeys("123456");
+        driver.findElement(By.id("send2")).click();
+        WebElement fieldTextElement = driver.findElement(By.id("p.required"));
+        String textFromElement = driver.findElement(By.id("advice-required-entry-email")).getText();
+        Assert.assertTrue(fieldTextElement.isDisplayed());
+        Assert.assertEquals("This is a required field.", textFromElement);
 
-@Test
+    }
+
+    @Test
+    public void loginWithBlankPasswordTest(){
+        driver.findElement(By.cssSelector(".skip-account .label")).click();
+        driver.findElement(By.cssSelector("a[title='Log In']")).click();
+        driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
+        driver.findElement(By.id("send2")).click();
+        WebElement fieldTextElement = driver.findElement(By.id("p.required"));
+        String textFromElement = driver.findElement(By.id("advice-required-entry-pass")).getText();
+        Assert.assertTrue(fieldTextElement.isDisplayed());
+        Assert.assertEquals("This is a required field.", textFromElement);
+    }
+
+
+    @Test
     public void loginWithValidCredentialsTest() {
         driver.findElement(By.cssSelector(".skip-account .label")).click();
-//        WebElement accountLink = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
-//        accountLink.click();
         driver.findElement(By.cssSelector("a[title='Log In']")).click();
         driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
         driver.findElement(By.id("pass")).sendKeys("123456");
@@ -43,8 +67,6 @@ public class LoginTest {
     public void loginWithInvalidPasswordTest(){
 
         driver.findElement(By.cssSelector(".skip-account .label")).click();
-//        WebElement accountLink = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
-//        accountLink.click();
         driver.findElement(By.cssSelector("a[title='Log In']")).click();
         driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
         driver.findElement(By.id("pass")).sendKeys("121233456");
@@ -57,8 +79,6 @@ public class LoginTest {
     public void loginWithInvalidEmail(){
 
         driver.findElement(By.cssSelector(".skip-account .label")).click();
-//        WebElement accountLink = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
-//        accountLink.click();
         driver.findElement(By.cssSelector("a[title='Log In']")).click();
         driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
         driver.findElement(By.id("pass")).sendKeys("121233456");
@@ -71,8 +91,6 @@ public class LoginTest {
     public void loginWithoutCredentialsTest(){
 
         driver.findElement(By.cssSelector(".skip-account .label")).click();
-//        WebElement accountLink = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
-//        accountLink.click();
         driver.findElement(By.cssSelector("a[title='Log In']")).click();
         driver.findElement(By.id("send2")).click();
         WebElement dashboardTextElement = driver.findElement(By.id("advice-required-entry-email"));

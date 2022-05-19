@@ -17,14 +17,17 @@ public class ShoppingCart {
         driver.manage().window().maximize();
         driver.get("http://testfasttrackit.info/selenium-test/");
     }
-
-    @Test
-    public void ViewCartLoggedIn()  {
+    private void logIn(){
         driver.findElement(By.cssSelector(".skip-account .label")).click();
         driver.findElement(By.cssSelector("a[title='Log In']")).click();
         driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
         driver.findElement(By.id("pass")).sendKeys("123456");
         driver.findElement(By.id("send2")).click();
+    }
+
+    @Test
+    public void ViewCartLoggedIn()  {
+        logIn();
         driver.findElement(By.cssSelector(".skip-cart .label")).click();
         driver.findElement(By.cssSelector(".cart-link")).click();
         WebElement cartTextElement = driver.findElement(By.cssSelector(".cart h1"));
@@ -55,11 +58,7 @@ public class ShoppingCart {
     @Test
 
     public void addToCartLoggedIn(){
-        driver.findElement(By.cssSelector(".skip-account .label")).click();
-        driver.findElement(By.cssSelector("a[title='Log In']")).click();
-        driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
-        driver.findElement(By.id("pass")).sendKeys("123456");
-        driver.findElement(By.id("send2")).click();
+        logIn();
         driver.findElement(By.cssSelector(".nav-5 .has-children")).click();
         driver.findElement(By.cssSelector(".actions [title='View Details']")).click();
         driver.findElement(By.cssSelector("#swatch27 img")).click();
@@ -73,11 +72,7 @@ public class ShoppingCart {
 
     @Test
     public void removeFromCartLoggedIn()  {
-        driver.findElement(By.cssSelector(".skip-account .label")).click();
-        driver.findElement(By.cssSelector("a[title='Log In']")).click();
-        driver.findElement(By.id("email")).sendKeys("robertcsete@yahoo.com");
-        driver.findElement(By.id("pass")).sendKeys("123456");
-        driver.findElement(By.id("send2")).click();
+        logIn();
         driver.findElement(By.cssSelector(".skip-cart .label")).click();
         driver.findElement(By.cssSelector("a.cart-link")).click();
         driver.findElement(By.cssSelector("td.product-cart-remove .btn-remove")).click();
