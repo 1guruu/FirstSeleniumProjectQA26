@@ -42,7 +42,7 @@ public class ShoppingCart {
         WebElement cartTextElement = driver.findElement(By.cssSelector("p.empty"));
         String textFromElement = driver.findElement(By.cssSelector("p.empty")).getText();
         Assert.assertTrue(cartTextElement.isDisplayed());
-        Assert.assertEquals("You have no items in your shopping cart",textFromElement);
+        Assert.assertEquals("You have no items in your shopping cart.",textFromElement);
     }
 
     @Test
